@@ -49,6 +49,8 @@ class ApiClient {
       const response = await fetch(url, {
         ...options,
         headers,
+        // Add mode: 'cors' to handle cross-origin requests properly
+        mode: 'cors',
       });
 
       if (!response.ok) {
@@ -59,7 +61,7 @@ class ApiClient {
       const data = await response.json();
       return { data };
     } catch (error) {
-      console.error('API request failed:', error);
+      console.error(`API request failed for ${url}:`, error);
       return { error: error instanceof Error ? error.message : 'Unknown error' };
     }
   }

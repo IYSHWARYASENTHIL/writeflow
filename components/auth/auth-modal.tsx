@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { LoginForm } from './login-form';
 import { RegisterForm } from './register-form';
 
@@ -21,6 +21,9 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md p-0 border-0">
+        <DialogTitle className="sr-only">
+          {mode === 'login' ? 'Sign In' : 'Create Account'}
+        </DialogTitle>
         {mode === 'login' ? (
           <LoginForm
             onSuccess={handleSuccess}
